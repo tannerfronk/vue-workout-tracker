@@ -20,6 +20,7 @@ export default {
     return {
       workoutItems: [
         {
+          id: 0,
           workout: 'Test',
           date: '2021-03-26',
           reps: '10',
@@ -29,6 +30,7 @@ export default {
           distance: ''
         },
         {
+          id: 1,
           workout: 'Test2',
           date: '2021-03-26',
           reps: '',
@@ -38,6 +40,7 @@ export default {
           distance: '1 mile'
         },
         {
+          id: 2,
           workout: 'Test3',
           date: '2021-03-26',
           reps: '10',

@@ -108,7 +108,7 @@
                 }
             },
             invalidDate() {
-                return this.item.date === '' && this.picked === 'sets'
+                return this.item.date === ''
             },
             invalidTime() {
                 if(this.picked === 'sets'){
