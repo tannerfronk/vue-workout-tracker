@@ -62,7 +62,7 @@
                     sets: '',
                     weight: '',
                     time: '',
-                    distance: ''
+                    distance: '',
                 },
                 submitting: false,
                 error: false,
@@ -75,21 +75,34 @@
                 this.submitting = true
                 this.clearStatus()
 
-                if(this.invalidWorkout || this.invalidWeight || this.invalidDate){
+                if(this.picked === 'time') {
+                    if(this.invalidWorkout || this.invalidDate || this.invalidTime || this.invalidDistance){
                     this.error = true
                     return
+                    }
+                } else if(this.picked === 'sets') {
+                    if(this.invalidWorkout || this.invalidDate || this.invalidWeight || this.invalidSets || this.invalidReps){
+                    this.error = true
+                    return
+                    }
                 }
+                
 
                 this.$emit('add:item', this.item)
                 this.item = {
                     workout: '',
-                    weight: '',
                     date: '',
+                    reps: '',
+                    sets: '',
+                    weight: '',
+                    time: '',
+                    distance: '',
                 }
 
                 this.error = false
                 this.success = true
                 this.submitting = false
+                this.picked = null
             },
             clearStatus(){
                 this.success = false
@@ -100,43 +113,23 @@
             invalidWorkout() {
                 return this.item.workout.trim() === ''
             },
-            invalidWeight() {
-                if(this.picked === 'time'){
-                    return false
-                } else {
-                    return this.item.weight.trim() === ''
-                }
-            },
             invalidDate() {
-                return this.item.date === ''
+                return this.item.date.trim() === ''
             },
             invalidTime() {
-                if(this.picked === 'sets'){
-                    return false
-                } else {
-                    return this.item.time.trim() === ''
-                }
-            },
-            invalidSets() {
-                if(this.picked === 'time'){
-                    return false
-                } else {
-                    return this.item.sets.trim() === ''
-                }
-            },
-            invalidReps() {
-                if(this.picked === 'time'){
-                    return false
-                } else {
-                    return this.item.reps.trim() === ''
-                }
+                return this.item.time.trim() === ''
             },
             invalidDistance() {
-                if(this.picked === 'sets'){
-                    return false
-                } else {
-                    return this.item.distance.trim() === ''
-                }
+                return this.item.distance.trim() === ''
+            },
+            invalidWeight() {
+                return this.item.weight.trim() === ''
+            },
+            invalidSets() {
+                return this.item.sets.trim() === ''
+            },
+            invalidReps() {
+                return this.item.reps.trim() === ''
             }
         }
     }

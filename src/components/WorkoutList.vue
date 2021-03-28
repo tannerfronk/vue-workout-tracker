@@ -8,11 +8,11 @@
                         <tr>
                             <th>Workout</th>
                             <th>Date</th>
-                            <th v-if="item.time !== '' && item.distance !== '' && item.reps === '' ||  item.weight === ''">Time</th>
-                            <th v-if="item.time !== '' && item.distance !== '' && item.reps === '' || item.weight === ''">Distance</th>
-                            <th v-if="item.reps !== '' && item.sets !== '' && item.weight !== ''">Sets</th>
-                            <th v-if="item.reps !== '' && item.sets !== '' && item.weight !== ''">Reps</th>
-                            <th v-if="item.reps !== '' && item.sets !== '' && item.weight !== ''">Weight</th>
+                            <th v-if="item.time !== '' && item.distance !== '' && item.reps === ''">Time</th>
+                            <th v-if="item.time !== '' && item.distance !== '' && item.reps === ''">Distance</th>
+                            <th v-if="item.reps !== '' && item.sets !== ''">Sets</th>
+                            <th v-if="item.reps !== '' && item.sets !== ''">Reps</th>
+                            <th v-if="item.reps !== '' && item.sets !== ''">Weight</th>
                             <th class="actionCol">Actions</th>
                         </tr>
                     </thead>

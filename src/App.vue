@@ -20,7 +20,7 @@ export default {
     return {
       workoutItems: [
         {
-          id: 0,
+          id: 1,
           workout: 'Dead-lift',
           date: '2021-03-26',
           reps: '5',
@@ -30,7 +30,7 @@ export default {
           distance: ''
         },
         {
-          id: 1,
+          id: 2,
           workout: 'Short Run',
           date: '2021-03-26',
           reps: '',
@@ -47,9 +47,10 @@ export default {
       const previousWorkoutId = this.workoutItems.length > 0
       ? this.workoutItems[this.workoutItems.length -1].id
       : 0
-      const newWorkoutId = previousWorkoutId + 1
-      const newWorkout = {...item, newWorkoutId}
+      const id = previousWorkoutId + 1
+      const newWorkout = {...item, id}
       this.workoutItems = [...this.workoutItems, newWorkout]
+      console.log(this.workoutItems)
     },
     deleteWorkout(id){
       this.workoutItems = this.workoutItems.filter(
