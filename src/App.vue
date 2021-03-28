@@ -1,17 +1,20 @@
 <template>
   <div id="app" class="small-container">
     <h1>Workout Tracker</h1>
-    <workout-list :items='workoutItems' />
+    <workout-list-form @add:item="addWorkout" />
+    <workout-list :items='workoutItems' @delete:item="deleteWorkout" @edit:item="editWorkout"/>
   </div>
 </template>
 
 <script>
 import WorkoutList from "./components/WorkoutList";
+import WorkoutListForm from "./components/WorkoutListForm";
 
 export default {
   name: 'App',
   components: {
-    WorkoutList
+    WorkoutList,
+    WorkoutListForm
   },
   data() {
     return {
@@ -33,7 +36,7 @@ export default {
           date: '03/28/21'
         },
         {
-          id: 2,
+          id: 3,
           workout: 'Pushups',
           reps: 10,
           sets: 5,
@@ -41,6 +44,26 @@ export default {
           date: '03/28/21'
         }
       ]
+    }
+  },
+  methods: {
+    addWorkout(item){
+      const previousWorkoutId = this.workoutItems.length > 0
+      ? this.workoutItems[this.workoutItems.length -1].id
+      : 0
+      const newWorkoutId = previousWorkoutId + 1
+      const newWorkout = {...item, newWorkoutId}
+      this.workoutItems = [...this.workoutItems, newWorkout]
+    },
+    deleteWorkout(id){
+      this.workoutItems = this.workoutItems.filter(
+        item => item.id !== id
+        )
+    },
+    editWorkout(id, updatedItem){
+      this.workoutItems = this.workoutItems.map(item =>
+      item.id === id ? updatedItem: item
+      )
     }
   }
 }
