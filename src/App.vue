@@ -21,33 +21,23 @@ export default {
       workoutItems: [
         {
           id: 0,
-          workout: 'Test',
+          workout: 'Dead-lift',
           date: '2021-03-26',
-          reps: '10',
+          reps: '5',
           sets: '4',
-          weight: '20',
+          weight: '120',
           time: '',
           distance: ''
         },
         {
           id: 1,
-          workout: 'Test2',
+          workout: 'Short Run',
           date: '2021-03-26',
           reps: '',
           sets: '',
           weight: '',
-          time: '20s',
-          distance: '1 mile'
-        },
-        {
-          id: 2,
-          workout: 'Test3',
-          date: '2021-03-26',
-          reps: '10',
-          sets: '4',
-          weight: '20',
-          time: '',
-          distance: ''
+          time: '7 min 12 sec',
+          distance: '1.2 miles'
         }
       ]
     }

@@ -13,7 +13,7 @@
                             <th v-if="item.reps !== '' && item.sets !== '' && item.weight !== ''">Sets</th>
                             <th v-if="item.reps !== '' && item.sets !== '' && item.weight !== ''">Reps</th>
                             <th v-if="item.reps !== '' && item.sets !== '' && item.weight !== ''">Weight</th>
-                            <th>Actions</th>
+                            <th class="actionCol">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,12 +43,12 @@
                             </td>
                             <td v-else>{{item.weight}}</td>
 
-                            <td v-if="editing === item.id">
+                            <td v-if="editing === item.id"  class="right">
                                 <button @click="editWorkout(item)">Save</button>
                                 <button class="muted-button" @click="cancelEdit(item)">Cancel</button>
                             </td>
 
-                            <td v-else>
+                            <td v-else  class="right">
                                 <button @click="editMode(item)">Edit</button>
                                 <button @click="$emit('delete:item', item.id)">Delete</button>
                             </td>
@@ -74,12 +74,12 @@
                             </td>
                             <td v-else>{{item.distance}}</td>
 
-                            <td v-if="editing === item.id">
+                            <td v-if="editing === item.id"  class="right">
                                 <button @click="editWorkout(item)">Save</button>
                                 <button class="muted-button" @click="cancelEdit(item)">Cancel</button>
                             </td>
 
-                            <td v-else>
+                            <td v-else class="right">
                                 <button @click="editMode(item)">Edit</button>
                                 <button @click="$emit('delete:item', item.id)">Delete</button>
                             </td>
@@ -128,7 +128,18 @@
 <style scoped>
 
 button {
-    margin-right: 1rem;
+    margin-left: .5rem;
 }
-
+.actionCol {
+    text-align: right;
+    padding-right: 4.5rem;
+}
+.right {
+    text-align: right;
+}
+.card {
+    border: 16px solid #f0f0f0;
+    padding: 2rem;
+    margin-bottom: 1rem;
+}
 </style>
