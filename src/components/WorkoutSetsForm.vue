@@ -33,7 +33,7 @@
             @focus="clearStatus" />
             <label>Reps</label>
             <input v-model="item.reps" type="number"
-            :class="{'has-error' : submitting && invalidReps}" 
+            :class="{'has-error' : submitting && InvalidReps}" 
             @focus="clearStatus" />
             <label>Weight</label>
             <input v-model="item.weight" type="number"
@@ -101,42 +101,22 @@
                 return this.item.workout.trim() === ''
             },
             invalidWeight() {
-                if(this.picked === 'time'){
-                    return false
-                } else {
-                    return this.item.weight.trim() === ''
-                }
+                return this.item.weight.trim() === ''
             },
             invalidDate() {
-                return this.item.date === '' && this.picked === 'sets'
+                return this.item.date === ''
             },
             invalidTime() {
-                if(this.picked === 'sets'){
-                    return false
-                } else {
-                    return this.item.time.trim() === ''
-                }
+                return this.item.time === ''
             },
             invalidSets() {
-                if(this.picked === 'time'){
-                    return false
-                } else {
-                    return this.item.sets.trim() === ''
-                }
+                return this.item.sets.trim() === ''
             },
             invalidReps() {
-                if(this.picked === 'time'){
-                    return false
-                } else {
-                    return this.item.reps.trim() === ''
-                }
+                return this.item.reps.trim() === ''
             },
             invalidDistance() {
-                if(this.picked === 'sets'){
-                    return false
-                } else {
-                    return this.item.distance.trim() === ''
-                }
+                return this.item.distance.trim() === ''
             }
         }
     }

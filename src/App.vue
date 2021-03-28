@@ -19,7 +19,33 @@ export default {
   data() {
     return {
       workoutItems: [
-        
+        {
+          workout: 'Test',
+          date: '2021-03-26',
+          reps: '10',
+          sets: '4',
+          weight: '20',
+          time: '',
+          distance: ''
+        },
+        {
+          workout: 'Test2',
+          date: '2021-03-26',
+          reps: '',
+          sets: '',
+          weight: '',
+          time: '20s',
+          distance: '1 mile'
+        },
+        {
+          workout: 'Test3',
+          date: '2021-03-26',
+          reps: '10',
+          sets: '4',
+          weight: '20',
+          time: '',
+          distance: ''
+        }
       ]
     }
   },
