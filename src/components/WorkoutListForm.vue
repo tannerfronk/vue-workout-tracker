@@ -9,10 +9,6 @@
         <input v-model="item.date" type="date"
         :class="{'has-error' : submitting && invalidDate}" 
         @focus="clearStatus" />
-        <label>Time</label>
-        <input v-model="item.time" type="time"
-        :class="{'has-error' : submitting && invalidDate}" 
-        @focus="clearStatus" />
 
         <div class="typeSelection">
             <input type="radio" id="time" name="type" value="time" v-model="picked">
@@ -21,9 +17,24 @@
             <label for="sets">Sets/Reps/Weight</label>
         </div>
         <div v-if="picked === 'time'">
-            <p>test</p>
+            <label>Time</label>
+            <input v-model="item.time" type="number"
+            :class="{'has-error' : submitting && invalidSets}" 
+            @focus="clearStatus" />
+            <label>Distance</label>
+            <input v-model="item.distance" type="text"
+            :class="{'has-error' : submitting && invalidSets}" 
+            @focus="clearStatus" />
         </div>
         <div v-if="picked === 'sets'">
+            <label>Sets</label>
+            <input v-model="item.sets" type="number"
+            :class="{'has-error' : submitting && invalidSets}" 
+            @focus="clearStatus" />
+            <label>Reps</label>
+            <input v-model="item.reps" type="number"
+            :class="{'has-error' : submitting && InvalidReps}" 
+            @focus="clearStatus" />
             <label>Weight</label>
             <input v-model="item.weight" type="number"
             :class="{'has-error' : submitting && invalidWeight}" 
@@ -47,11 +58,11 @@
                 item: {
                     workout: '',
                     date: '',
+                    reps: '',
+                    sets: '',
+                    weight: '',
                     time: '',
-                    reps: null,
-                    sets: null,
-                    weight: null,
-                    distance: null
+                    distance: ''
                 },
                 submitting: false,
                 error: false,
@@ -93,7 +104,19 @@
                 return this.item.weight.trim() === ''
             },
             invalidDate() {
-                return this.item.date.trim() === ''
+                return this.item.date === ''
+            },
+            invalidTime() {
+                return this.item.time === ''
+            },
+            invalidSets() {
+                return this.item.sets.trim() === ''
+            },
+            invalidReps() {
+                return this.item.reps.trim() === ''
+            },
+            invalidDistance() {
+                return this.item.distance.trim() === ''
             }
         }
     }
