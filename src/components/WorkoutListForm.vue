@@ -2,12 +2,39 @@
 <div id="workout-form">
     <form @submit.prevent="handleSubmit">
         <label>Workout</label>
-        <input v-model="item.workout" type="text" />
-        <label>Weight</label>
-        <input v-model="item.weight" type="text" />
+        <input v-model="item.workout" type="text" 
+        :class="{'has-error' : submitting && invalidWorkout}" 
+        @focus="clearStatus" />
         <label>Date</label>
-        <input v-model="item.date" type="date" />
+        <input v-model="item.date" type="date"
+        :class="{'has-error' : submitting && invalidDate}" 
+        @focus="clearStatus" />
+        <label>Time</label>
+        <input v-model="item.time" type="time"
+        :class="{'has-error' : submitting && invalidDate}" 
+        @focus="clearStatus" />
+
+        <div class="typeSelection">
+            <input type="radio" id="time" name="type" value="time" v-model="picked">
+            <label for="time">Time/Distance</label>
+            <input type="radio" id="sets" name="type" value="sets" v-model="picked">
+            <label for="sets">Sets/Reps/Weight</label>
+        </div>
+        <div v-if="picked === 'time'">
+            <p>test</p>
+        </div>
+        <div v-if="picked === 'sets'">
+            <label>Weight</label>
+            <input v-model="item.weight" type="number"
+            :class="{'has-error' : submitting && invalidWeight}" 
+            @focus="clearStatus" />
+        </div>
+        
         <button>Add Workout</button>
+        <p v-if="error && submitting" class="error-message">
+            Please fill out all required fields
+        </p>
+        <p v-if="success" class="success-message">Workout successfully added!</p>
     </form>
 </div>
 </template>
@@ -20,20 +47,88 @@
                 item: {
                     workout: '',
                     date: '',
-                    reps: 10,
-                    sets: 5,
-                    weight: '',
-                }
+                    time: '',
+                    reps: null,
+                    sets: null,
+                    weight: null,
+                    distance: null
+                },
+                submitting: false,
+                error: false,
+                success: false,
+                picked: null
             }
         },
         methods: {
             handleSubmit(){
+                this.submitting = true
+                this.clearStatus()
+
+                if(this.invalidWorkout || this.invalidWeight || this.invalidDate){
+                    this.error = true
+                    return
+                }
+
                 this.$emit('add:item', this.item)
+                this.item = {
+                    workout: '',
+                    weight: '',
+                    date: '',
+                }
+
+                this.error = false
+                this.success = true
+                this.submitting = false
+            },
+            clearStatus(){
+                this.success = false
+                this.error = false
+            }
+        },
+        computed: {
+            invalidWorkout() {
+                return this.item.workout.trim() === ''
+            },
+            invalidWeight() {
+                return this.item.weight.trim() === ''
+            },
+            invalidDate() {
+                return this.item.date.trim() === ''
             }
         }
     }
 </script>
 
 <style scoped>
+
+form {
+    margin-bottom: 2rem;
+    text-align: left;
+}
+form button {
+    margin-top: 1rem;
+}
+
+[class*='-message'] {
+    font-weight: bold;
+}
+
+.error-message {
+    color: red;
+}
+
+.success-message {
+    color: green;
+}
+.typeSelection {
+    display: flex;
+}
+.typeSelection input {
+    margin-top: 22px;
+    margin-right: 8px;
+}
+#sets {
+    margin-left: 1rem;
+}
 
 </style>
