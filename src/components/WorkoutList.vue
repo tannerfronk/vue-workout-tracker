@@ -1,10 +1,28 @@
 <template>
-    <h2>Hello World real</h2>
+    <div id="workoutList-table">
+    <table>
+        <thead>
+            <tr>
+                <th>Workout</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="item in items" :key="item.id">
+                <td>{{item.workout}}</td>
+                <td>{{item.date}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 </template>
 
 <script>
     export default {
-        name: "WorkoutList"
+        name: "WorkoutList",
+        props: {
+            items: Array
+        }
     }
 </script>
 
